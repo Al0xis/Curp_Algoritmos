@@ -248,7 +248,7 @@ int convertir(char* cadena)
 	return fecha;
 }
 
-void burbuja(Lista* lista, unsigned opc)
+void burbuja(Lista* lista)
 {
 	if(lista->n==1 || lista->n==0) return;
 	Nodo* A;
@@ -257,6 +257,23 @@ void burbuja(Lista* lista, unsigned opc)
 	int i=1; 
 	Curp auxiliar;
 	crear(&auxiliar); 
+	int opc;
+	printf("\nSeleccione el criterio para ordenar las curps:\n1) Primer nombre\n2) Primer apellido\n3) Fecha de nacimiento\nOpcion deseada: ");
+	scanf("%d", &opc);
+	switch(opc)
+	{
+		case 1:
+			opc=1;
+			break;
+		case 2:
+			opc=2;
+			break;
+		case 3:
+			opc=3;
+			break;
+		default:
+			break;	
+	}
 	while(i<lista->n)
 	{
 		B = A->siguiente;
@@ -351,7 +368,7 @@ void burbuja(Lista* lista, unsigned opc)
 	borrar_memoria(&auxiliar);
 }
 
-void seleccion(Lista* lista, unsigned opc)
+void seleccion(Lista* lista)
 {
 	if(lista->n==1 || lista->n==0) return;
 	Nodo* cabeza;
@@ -360,6 +377,23 @@ void seleccion(Lista* lista, unsigned opc)
 	cabeza = lista->cabeza;
 	Curp auxiliar;
 	crear(&auxiliar); 
+	int opc;
+	printf("\nSeleccione el criterio para ordenar las curps:\n1) Primer nombre\n2) Primer apellido\n3) Fecha de nacimiento\nOpcion deseada: ");
+	scanf("%d", &opc);
+	switch(opc)
+	{
+		case 1:
+			opc=1;
+			break;
+		case 2:
+			opc=2;
+			break;
+		case 3:
+			opc=3;
+			break;
+		default:
+			break;	
+	}
 	while(cabeza)
 	{
 		nodo_ordenar = cabeza; 
@@ -414,7 +448,7 @@ void seleccion(Lista* lista, unsigned opc)
 	borrar_memoria(&auxiliar);
 }
 
-void insercion(Lista* lista, unsigned opc)
+void insercion(Lista* lista)
 {
 	if(lista->n==1 || lista->n==0) return;
 	Nodo* cabeza;
@@ -423,6 +457,23 @@ void insercion(Lista* lista, unsigned opc)
 	Curp auxiliar2;
 	crear(&auxiliar);
 	crear(&auxiliar2); 
+	int opc;
+	printf("\nSeleccione el criterio para ordenar las curps:\n1) Primer nombre\n2) Primer apellido\n3) Fecha de nacimiento\nOpcion deseada: ");
+	scanf("%d", &opc);
+	switch(opc)
+	{
+		case 1:
+			opc=1;
+			break;
+		case 2:
+			opc=2;
+			break;
+		case 3:
+			opc=3;
+			break;
+		default:
+			break;	
+	}
 	nodo_ordenar = lista->cabeza->siguiente;
 	while(nodo_ordenar != NULL)
 	{
@@ -603,8 +654,8 @@ void curp(unsigned opc_cri, unsigned opc_alg)
 {
 	Curp datos;
 	Lista* lista=NULL;
-	int numero_curps=0;
-	printf("Numero de curps que desea ingresar: ");
+	int numero_curps=0, opc;
+	printf("Numero de curps que desea ingresar(Ingresar todos de una vez): ");
 	scanf("%d", &numero_curps);
 	if(numero_curps == 0) return;
 	crear(&datos);
@@ -614,57 +665,36 @@ void curp(unsigned opc_cri, unsigned opc_alg)
 		generar_curp(&datos);
 		agregar_nodo(&lista, &datos);
 	}
-	if(opc_alg == 1)
-		burbuja(lista, opc_cri);
-	if(opc_alg == 2)
-		insercion(lista, opc_cri);
-	if(opc_alg == 3)
-		seleccion(lista, opc_cri);
-	imprimir_lista(lista);
+	do
+	{
+		printf("\nMENU DE OPCIONES\n");
+		printf("1. Ordenamiento burbuja\n2. Ordenamiento seleccion\n 3. Ordenamiento insercion\n4. Busqueda secuencial\n5. Busqueda binaria\n6. Busqueda\n7. Imprimir lista\n 8.Salir");
+		printf("\nOpcion deseada: ");
+		scanf("%d", &opc);
+		switch(opc)
+		{
+			case 1:
+				burbuja(lista);
+				break;
+			case 2:
+				seleccion(lista);
+				break;
+			case 3:
+				insercion(lista);
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				imprimir_lista(lista);
+				break;	
+			case 8:
+				break;
+		}
+	} while(opc != 8);
 	liberar_lista(lista);
 	borrar_memoria(&datos);
-}
-
-void opc_ordenar(void)
-{
-	int opc;
-	printf("\nSeleccione el criterio para ordenar las curps:\n1) Primer nombre\n2) Primer apellido\n3) Fecha de nacimiento\nOpcion deseada: ");
-	scanf("%d", &opc);
-	switch(opc)
-	{
-		case 1:
-			opc_algoritmos(1);
-			break;
-		case 2:
-			opc_algoritmos(2);
-			break;
-		case 3:
-			opc_algoritmos(3);
-			break;
-		default:
-			break;	
-	}
-}
-
-void opc_algoritmos(unsigned opc_cri)
-{
-	int opc;
-	printf("\nSeleccione el algoritmo para ordenar las curps:\n1) Intercambio directo\n2) Insercion directa\n3) Seleccion directa\n4) Quicksort\nOpcion deseada: ");
-	scanf("%d", &opc);
-	switch(opc)
-	{
-		case 1:
-			curp(opc_cri, 1);
-			break;
-		case 2:
-			curp(opc_cri, 2);
-			break;
-		case 3:
-			curp(opc_cri, 3);
-			break;
-		case 4:
-			break;
-		default:
-			break;	
-	}
 }

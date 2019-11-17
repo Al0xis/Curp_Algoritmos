@@ -42,7 +42,7 @@ void imprimir_lista(Lista* lista);
 void liberar_lista(Lista* lista);
 
 //Funcion que gestiona la creacion del curp
-void curp(unsigned opc_cri, unsigned opc_alg);
+void curp();
 
 //Funciones para crear la memoria donde se guardaran las cadenas de caracteres
 void crear(Curp* estructura_datos);
@@ -63,10 +63,6 @@ void obtener_datos(Curp* estructura_datos);
 void borrar_memoria(Curp* estructura_datos);
 
 //Funciones para ordenar
-void burbuja(Lista* lista, unsigned opc);
-void insercion(Lista* lista, unsigned opc);
-void seleccion(Lista* lista, unsigned opc);
-
-//Funciones para los menus
-void opc_ordenar(void);
-void opc_algoritmos(unsigned opc_cri);
+void burbuja(Lista* lista);
+void insercion(Lista* lista);
+void seleccion(Lista* lista);

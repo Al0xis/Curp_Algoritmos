@@ -2,6 +2,6 @@
 
 int main()
 {
-	opc_ordenar();
+	curp();
 	return 0;
 }

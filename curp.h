@@ -67,9 +67,6 @@ void burbuja(Lista* lista, unsigned opc);
 void insercion(Lista* lista, unsigned opc);
 void seleccion(Lista* lista, unsigned opc);
 
-//Funciones de busqueda
-size_t secuencial(Lista* lista, char* encontrar)
-
 //Funciones para los menus
 void opc_ordenar(void);
 void opc_algoritmos(unsigned opc_cri);

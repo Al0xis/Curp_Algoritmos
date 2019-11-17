@@ -650,6 +650,31 @@ void insercion(Lista* lista)
 	borrar_memoria(&auxiliar2);
 }
 
+void secuencial(Lista* lista)
+{
+	int n_nodo=0, contador=1, flag=0;
+	char* curp;
+	curp = (char*)malloc(19*sizeof(char));
+	if(curp == NULL) 
+	{
+		printf("\nERROR\n");
+		return;
+	}
+	printf("\nIntroduzca la curp a buscar: \n");
+	scanf("%s", curp);
+	Nodo* cabeza;
+	cabeza = lista->cabeza;
+	do
+	{ 
+		flag = strcmp(curp, cabeza->curp_generado);
+		if(flag == 0) n_nodo = contador;	
+		contador+=1;
+		cabeza = cabeza->siguiente;
+	}while(cabeza!=NULL);
+	printf("La curp buscada se encuentra en la posicion:%i de la lista\n ", n_nodo);
+	free(curp);
+}
+
 void curp(unsigned opc_cri, unsigned opc_alg)
 {
 	Curp datos;
@@ -668,7 +693,7 @@ void curp(unsigned opc_cri, unsigned opc_alg)
 	do
 	{
 		printf("\nMENU DE OPCIONES\n");
-		printf("1. Ordenamiento burbuja\n2. Ordenamiento seleccion\n 3. Ordenamiento insercion\n4. Busqueda secuencial\n5. Busqueda binaria\n6. Busqueda\n7. Imprimir lista\n 8.Salir");
+		printf("1. Ordenamiento burbuja\n2. Ordenamiento seleccion\n3. Ordenamiento insercion\n4. Busqueda secuencial\n5. Busqueda binaria\n6. Busqueda\n7. Imprimir lista\n8. Salir");
 		printf("\nOpcion deseada: ");
 		scanf("%d", &opc);
 		switch(opc)
@@ -683,6 +708,7 @@ void curp(unsigned opc_cri, unsigned opc_alg)
 				insercion(lista);
 				break;
 			case 4:
+			secuencial(lista);
 				break;
 			case 5:
 				break;
